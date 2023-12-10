@@ -2,90 +2,129 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Awsome Reads - Platform where developers become Architect </title>
+    <title>Interactive Background Animation</title>
     <style>
         body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(
+                    135deg,
+                    #3498db,
+                    #9b59b6,
+                    #e74c3c,
+                    #f39c12,
+                    #1abc9c,
+                    #f1c40f,
+                    #c0392b,
+                    #2ecc71,
+                    #e67e22
+            );
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .content {
+            text-align: center;
+            color: white;
+            font-size: 2em;
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
         }
-        header {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
+
+        .shapes {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
         }
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        nav ul li {
-            display: inline;
-            margin-right: 20px;
-        }
-        section {
-            padding: 20px;
-            margin: 20px;
-        }
-        .about {
-            height: 500px; /* Adjust height as needed */
-            overflow-y: scroll;
-        }
-        .search-bar {
-            text-align: center;
-            margin: 20px auto;
-        }
-        .search-bar input[type="text"] {
-            padding: 8px;
-            width: 300px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-        }
-        .search-bar input[type="submit"] {
-            padding: 8px 20px;
-            background-color: #333;
-            color: white;
-            border: none;
-            border-radius: 5px;
+
+        .shape {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            position: absolute;
+            pointer-events: auto;
             cursor: pointer;
+            user-select: none;
+            animation: move 5s ease-in-out infinite alternate, rotate 4s linear infinite;
+        }
+
+        .shape:nth-child(2) {
+            width: 80px;
+            height: 80px;
+            animation-duration: 6s;
+            background-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .shape:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            animation-duration: 7s;
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+
+        @keyframes move {
+            0% {
+                top: -10%;
+                left: -10%;
+            }
+            100% {
+                top: 110%;
+                left: 110%;
+            }
+        }
+
+        @keyframes rotate {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .shape:hover {
+            animation-play-state: paused;
+            background-color: #ff0; /* Change color on hover */
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Awsome Reads - Platform where developers become Architect</h1>
-    <nav>
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#search">Search</a></li>
-        </ul>
-    </nav>
-</header>
+<div class="content">
+    <p>Welcome to Gaurav's Animation!</p>
+    <p>Hover over the shapes and watch them respond!</p>
+    <p>Actual website is coming soon!! Till that time enjoy the animation !!</p>
+</div>
 
-<section id="about" class="about">
-    <h2>About Me</h2>
-    <p>Welcome to my corner of the web! My name is Gaurav Mishra ,  With over 8 years of hands-on experience in the world of software development, I've had the privilege of diving deep into various tech stacks and platforms. My journey has been an exploration through multiple realms, working extensively with frameworks such as Spring and Hibernate, leveraging the power of databases like Amazon DynamoDB, Elasticsearch, MySQL, and incorporating the robustness of messaging systems like RabbitMQ and Kafka.</p>
-    <p>My passion for crafting software solutions has been fueled by a curiosity to innovate and a commitment to deliver high-quality, scalable applications. The challenges of the tech landscape have been my playground, and every project has been an opportunity to blend technical expertise with a creative approach, ensuring that each solution aligns seamlessly with the envisioned goals.</p>
-    <p>In this rapidly evolving digital era, I believe in staying at the forefront of technological advancements. Embracing new tools and methodologies is not just a choice but a way to continuously enhance the solutions I build and contribute positively to the tech community.</p>
-    <p>Beyond code, I'm a believer in collaboration and teamwork, understanding that the best solutions often emerge from collective efforts and diverse perspectives. I thrive in environments that encourage innovation, foster learning, and value a culture of excellence.</p>
-    <p>When I'm not typing away lines of code, you might find me exploring the latest tech trends, diving into a good book, or enjoying the outdoors. Feel free to explore my work and reach out for collaborations, discussions, or just a good conversation about the ever-evolving world of software development.</p>
-    <p>Let's innovate, let's code, and let's build the future together!</p>
-
-</section>
-
-<section id="search" class="search-bar">
-    <h2>Search</h2>
-    <form action="https://www.google.com/search" method="GET" target="_blank">
-        <input type="text" name="q" placeholder="Search...">
-        <input type="submit" value="Search">
-    </form>
-</section>
-
-<!-- Other sections can be added here -->
+<div class="shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+</div>
 
 </body>
 </html>
